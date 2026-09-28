@@ -6,5 +6,8 @@ artifacts/
 cache/
 coverage/
 .sites-runtime/
+<<<<<<< HEAD
 
 .vercel/
+=======
+>>>>>>> cfb0709ca0a11cac52e93d9e52371638959f6ba1

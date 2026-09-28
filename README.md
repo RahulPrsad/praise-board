@@ -4,7 +4,11 @@ A permissionless thank-you wall for Ifeoma’s community bus timetable. Solidity
 
 ## Delivery status
 
+<<<<<<< HEAD
 **Sepolia contract deployed:** `0x8153EdA8EeB97D7709eD54FfAE2F6280ab7bc9f2`. Contract code and beneficiary were verified through the public Sepolia RPC. No supporter tip has been sent yet. Public GitHub publishing remains pending.
+=======
+**Sepolia contract: not deployed yet.** No address or testnet transaction is claimed. Deployment requires the local `.env` values and a funded Sepolia burner wallet. The UI intentionally shows an empty deployment-pending state until these are configured. This repository is prepared locally; publishing it to a public GitHub repository requires your GitHub access.
+>>>>>>> cfb0709ca0a11cac52e93d9e52371638959f6ba1
 
 ## Run
 
@@ -77,6 +81,7 @@ Check `git status --ignored` before pushing: `.env` and `node_modules` must rema
 MIT licensed. See LICENSE.
 
 Local verification: Solidity 0.8.28 compiled successfully; all 5 contract tests passed. Frontend JavaScript syntax and HTTP serving passed. A workspace-scoped Hardhat settings adapter was used for this sandbox’s filesystem restrictions. Wallet UI and real Sepolia transaction remain unverified. Optional WebMCP read-tool browser validation was unavailable.
+<<<<<<< HEAD
 
 ## Sepolia deployment
 Address: 0x8153EdA8EeB97D7709eD54FfAE2F6280ab7bc9f2
@@ -85,3 +90,5 @@ Transaction: https://sepolia.etherscan.io/tx/0x45e7df94740d4851707a233ece9efa578
 
 ## Deploy this ZIP to Vercel
 Upload the extracted project files to your GitHub repository, then import the repository into Vercel. The included vercel.json sets Framework: Other, Build Command: npm run build, Output Directory: dist, and Install Command: npm ci. No private key or environment variables are needed to host the frontend. The deployed Sepolia contract address is already in dist/config.json. Do not upload a filled .env file. The original GPT hosting metadata is intentionally excluded from this portable package.
+=======
+>>>>>>> cfb0709ca0a11cac52e93d9e52371638959f6ba1
