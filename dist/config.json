@@ -1,0 +1,8 @@
+{
+  "address": "0x8153EdA8EeB97D7709eD54FfAE2F6280ab7bc9f2",
+  "chainId": 11155111,
+  "deploymentBlock": 11802147,
+  "deploymentTransaction": "0x45e7df94740d4851707a233ece9efa578509a3deb55e1bae7583fce555c220c2",
+  "beneficiary": "0x42F1F6c80cD0f0738D5EB1C275A01AE8aFc5E63F",
+  "rpcUrl": "https://ethereum-sepolia-rpc.publicnode.com"
+}
