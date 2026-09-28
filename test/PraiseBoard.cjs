@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');
+const {ethers}=require('hardhat');
+describe('PraiseBoard',function(){let board,owner,alice;
+beforeEach(async()=>{[owner,alice]=await ethers.getSigners();board=await ethers.deployContract('PraiseBoard',[owner.address]);});
+it('records value, identity, UTF-8 note and event on chain',async()=>{const tx=await board.connect(alice).tip('Alice','Thanks 🚌',{value:123n});const receipt=await tx.wait();assert.equal(await board.tipCount(),1n);const tip=await board.getTip(0);assert.equal(tip.supporter,alice.address);assert.equal(tip.note,'Thanks 🚌');assert.equal(tip.amount,123n);assert.equal(await board.totalTipped(),123n);const event=board.interface.parseLog(receipt.logs[0]);assert.equal(event.name,'TipReceived');assert.equal(event.args.id,0n);});
+it('rejects zero value and oversized names and UTF-8 notes',async()=>{await assert.rejects(board.tip('',''));await assert.rejects(board.tip('a'.repeat(41),'',{value:1}));await assert.rejects(board.tip('','🚌'.repeat(71),{value:1}));await board.tip('a'.repeat(40),'a'.repeat(280),{value:1});});
+it('only beneficiary can withdraw, preserving history',async()=>{await board.connect(alice).tip('A','Thank you',{value:1000});await assert.rejects(board.connect(alice).withdraw());await board.withdraw();assert.equal(await ethers.provider.getBalance(await board.getAddress()),0n);assert.equal(await board.totalTipped(),1000n);assert.equal(await board.tipCount(),1n);await assert.rejects(board.withdraw());});
+it('bounds pagination and handles empty pages',async()=>{assert.equal((await board.getTips(100,20)).length,0);await assert.rejects(board.getTips(0,51));await board.tip('A','',{value:1});assert.equal((await board.getTips(0,20)).length,1);});
+it('rejects zero beneficiary and direct transfers without a note call',async()=>{await assert.rejects(ethers.deployContract('PraiseBoard',[ethers.ZeroAddress]));await assert.rejects(alice.sendTransaction({to:await board.getAddress(),value:1}));});
+});
